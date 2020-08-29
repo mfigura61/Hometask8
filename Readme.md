@@ -164,6 +164,16 @@ NAME            PROPERTY    VALUE    SOURCE
 otus            recordsize  128K     local
 otus/hometask2  recordsize  128K     inherited from otus
 ```
+3.  Снепшоты.Подцепили снепшот, find прошарили содержимое  по имени файла. там была ссылочка на Гитхаб. судя по картинке кодовое слово awesome.
+```
+[vagrant@ZFS /]$ sudo zfs receive otus/storage < otus_task2.file 
+[vagrant@ZFS /]$ sudo zfs list
+NAME             USED  AVAIL     REFER  MOUNTPOINT
+otus            4.91M   347M       25K  /otus
+otus/hometask2  1.88M   347M     1.88M  /otus/hometask2
+otus/storage    2.83M   347M     2.83M  /otus/storage
+[vagrant@ZFS /]$ cat /otus/storage/task1/file_mess/secret_message
+https://github.com/sindresorhus/awesome
 
 
 
