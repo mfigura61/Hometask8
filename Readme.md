@@ -98,6 +98,10 @@ mypool1/lz4     1.8G  128K  1.8G   1% /mypool1/lz4
 mypool1/gzip    1.8G  128K  1.8G   1% /mypool1/gzip
 mypool1/lzjb    1.8G  128K  1.8G   1% /mypool1/lzjb
 mypool1/zle     1.8G  128K  1.8G   1% /mypool1/zle
+[vagrant@ZFS ~]$ sudo zfs set compression=lz4 mypool1/lz4
+[vagrant@ZFS ~]$ sudo zfs set compression=zle mypool1/zle
+[vagrant@ZFS ~]$ sudo zfs set compression=lzjb mypool1/lzjb
+[vagrant@ZFS ~]$ sudo zfs set compression=gzip mypool1/gzip
 ```
 
 
