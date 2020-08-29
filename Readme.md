@@ -79,5 +79,25 @@ sdg      8:96   0    1G  0 disk
 NAME      SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
 mypool1  3.75G   296K  3.75G        -         -     0%     0%  1.00x    ONLINE  -
 ```
+Создадим файловые системы с различными степенями сжатия
+```
+[vagrant@ZFS ~]$ sudo zfs create mypool1/gzip
+[vagrant@ZFS ~]$ sudo zfs create mypool1/lzjb
+[vagrant@ZFS ~]$ sudo zfs create mypool1/zle
+[vagrant@ZFS ~]$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        912M     0  912M   0% /dev
+tmpfs           919M     0  919M   0% /dev/shm
+tmpfs           919M  8.6M  911M   1% /run
+tmpfs           919M     0  919M   0% /sys/fs/cgroup
+/dev/sda1        40G  3.1G   37G   8% /
+tmpfs           184M     0  184M   0% /run/user/1000
+tmpfs           184M     0  184M   0% /run/user/0
+mypool1         1.8G  128K  1.8G   1% /mypool1
+mypool1/lz4     1.8G  128K  1.8G   1% /mypool1/lz4
+mypool1/gzip    1.8G  128K  1.8G   1% /mypool1/gzip
+mypool1/lzjb    1.8G  128K  1.8G   1% /mypool1/lzjb
+mypool1/zle     1.8G  128K  1.8G   1% /mypool1/zle
+```
 
 
