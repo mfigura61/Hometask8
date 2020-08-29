@@ -103,5 +103,28 @@ mypool1/zle     1.8G  128K  1.8G   1% /mypool1/zle
 [vagrant@ZFS ~]$ sudo zfs set compression=lzjb mypool1/lzjb
 [vagrant@ZFS ~]$ sudo zfs set compression=gzip mypool1/gzip
 ```
-
+Скачаем в mypool1 и во все вложенные папки,с включенной компрессией томик войны и мир размером 3,8 мб.
+```
+vagrant@ZFS mypool1]$ sudo wget http://tolstoy.ru/upload/iblock/b22/voina-i-mir.docx
+--2020-08-29 15:09:15--  http://tolstoy.ru/upload/iblock/b22/voina-i-mir.docx
+Resolving tolstoy.ru (tolstoy.ru)... 89.188.109.70
+Connecting to tolstoy.ru (tolstoy.ru)|89.188.109.70|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4021035 (3.8M) [application/vnd.openxmlformats-officedocument.wordprocessingml.document,charset=utf-8]
+[vagrant@ZFS mypool1]$ zfs get compressratio
+NAME          PROPERTY       VALUE  SOURCE
+mypool1       compressratio  1.00x  -
+mypool1/gzip  compressratio  1.01x  -
+mypool1/lz4   compressratio  1.01x  -
+mypool1/lzjb  compressratio  1.00x  -
+mypool1/zle   compressratio  1.01x  -
+sudo zfs list 
+NAME           USED  AVAIL     REFER  MOUNTPOINT
+mypool1       19.7M  1.72G     3.91M  /mypool1
+mypool1/gzip  3.86M  1.72G     3.86M  /mypool1/gzip
+mypool1/lz4   3.86M  1.72G     3.86M  /mypool1/lz4
+mypool1/lzjb  3.88M  1.72G     3.88M  /mypool1/lzjb
+mypool1/zle   3.87M  1.72G     3.87M  /mypool1/zle
+```
+На примере этого небольшого файла видно преимущество gzip (а ведь это был еще не самый высокий из 9 уровней) и современного используемого по дефолту lz4. Старый lzjb уступил всем, zle лучше проявляет себя на несжимаемых данных типа фото или видео.На большем кол-ве данных разбег был бы больше
 
