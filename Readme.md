@@ -71,7 +71,13 @@ sdd      8:48   0    1G  0 disk
 sde      8:64   0    1G  0 disk 
 sdf      8:80   0    1G  0 disk 
 sdg      8:96   0    1G  0 disk 
-
-
+```  
+Создадим пул.  
+```
+[vagrant@ZFS ~]$ sudo zpool create -f mypool1 raidz2 sdb sdc sdd sde
+[vagrant@ZFS ~]$ sudo zpool list
+NAME      SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+mypool1  3.75G   296K  3.75G        -         -     0%     0%  1.00x    ONLINE  -
+```
 
 
