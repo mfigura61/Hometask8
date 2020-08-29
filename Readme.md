@@ -146,5 +146,25 @@ config:
 errors: No known data errors  
 
 [vagrant@ZFS /]$ sudo zpool list | grep otus
-otus      480M  2.09M   478M        -         -     0%     0%  1.00x    ONLINE  -
+otus      480M  2.09M   478M        -         -     0%     0%  1.00x    ONLINE  -  
+```
+
+Итого. Объем нового пула 480 Мб. Тип пула- зеркало.Сжатие - ZLE, контрольная сумма sha256,recordsize 128K.
+```
+[vagrant@ZFS /]$ sudo zfs get compression
+NAME            PROPERTY     VALUE     SOURCE
+otus            compression  zle       local
+otus/hometask2  compression  zle       inherited from otus
+[vagrant@ZFS /]$ zfs get checksum
+NAME            PROPERTY  VALUE      SOURCE
+otus            checksum  sha256     local
+otus/hometask2  checksum  sha256     inherited from otus
+[vagrant@ZFS /]$ zfs get recordsize
+NAME            PROPERTY    VALUE    SOURCE
+otus            recordsize  128K     local
+otus/hometask2  recordsize  128K     inherited from otus
+```
+
+
+
 
