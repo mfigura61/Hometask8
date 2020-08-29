@@ -128,3 +128,23 @@ mypool1/zle   3.87M  1.72G     3.87M  /mypool1/zle
 ```
 На примере этого небольшого файла видно преимущество gzip (а ведь это был еще не самый высокий из 9 уровней) и современного используемого по дефолту lz4. Старый lzjb уступил всем, zle лучше проявляет себя на несжимаемых данных типа фото или видео.На большем кол-ве данных разбег был бы больше
 
+2.  Имортируем пул.  
+```
+vagrant@ZFS /]$ sudo zpool import -d zfs_task1/ otus
+[vagrant@ZFS /]$ sudo zpool status otus
+  pool: otus
+ state: ONLINE
+  scan: none requested
+config:
+
+	NAME                  STATE     READ WRITE CKSUM
+	otus                  ONLINE       0     0     0
+	  mirror-0            ONLINE       0     0     0
+	    /zfs_task1/filea  ONLINE       0     0     0
+	    /zfs_task1/fileb  ONLINE       0     0     0
+
+errors: No known data errors  
+
+[vagrant@ZFS /]$ sudo zpool list | grep otus
+otus      480M  2.09M   478M        -         -     0%     0%  1.00x    ONLINE  -
+
