@@ -51,12 +51,13 @@ zfs send otus/storage@task2 > otus_task2.file
 ## Ход работ ##
 
 1.  Сразу подготовим вагрант-файл, в конфигурацию включим побольше дисков, кроме того сразу пропишем необходимые команды для автоустановки ZFS в виртуалку.Т.о уже при старте ВМ можем работать с ZFS.
-> [vagrant@ZFS ~]$ sudo zpool list
+> [vagrant@ZFS ~]$ sudo zpool list  
 >  no pools available  
 
 Посмотрим на диски в системе  
 
-``` [vagrant@ZFS ~]$ lsblk 
+``` 
+[vagrant@ZFS ~]$ lsblk 
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sda      8:0    0   40G  0 disk 
 └─sda1   8:1    0   40G  0 part /
