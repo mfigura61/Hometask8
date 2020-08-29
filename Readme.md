@@ -56,7 +56,7 @@ zfs send otus/storage@task2 > otus_task2.file
 
 Посмотрим на диски в системе  
 
->  [vagrant@ZFS ~]$ lsblk 
+``` [vagrant@ZFS ~]$ lsblk 
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sda      8:0    0   40G  0 disk 
 └─sda1   8:1    0   40G  0 part /
